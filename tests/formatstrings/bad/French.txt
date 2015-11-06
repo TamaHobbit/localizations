@@ -1,0 +1,3 @@
+building_speedup=Terminer ce travail immédiatement pour\n{0} pièces ou {1} $
+toomany=This second is tres cool {0}
+notenough=Could be an error, dunno?

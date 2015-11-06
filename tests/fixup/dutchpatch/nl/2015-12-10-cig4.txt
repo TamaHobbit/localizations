@@ -1,0 +1,8 @@
+notification_building_finished_construction=Een gebouw is klaar!
+notification_building_finished_upgrading=Een gebouw is verbeterd.
+notification_open_the_game=Open het spel om je eiland te bezoeken!
+boost_range=Dit is een test om te kijken of we
+boost=Inderdaad die twee keys overschrijven en de rest laten staan
+rewards.collect=Verzamelen
+construction_company_description=Je bouwbedrijf levert bouwvakkers die je nodig hebt om je gebouwen te bouwen, te verbeteren en te repareren.\n\nVerbeter je bouwbedrijf zodat er meer bouwvakkers beschikbaar komen en je meer bouwwerk tegelijkertijd kunt doen.
+harbor_route_unlock_description=Breid je staf uit naar andere, prachtige eilanden!\n\nActiveer routes naar deze eilanden om ze vrij te spelen.

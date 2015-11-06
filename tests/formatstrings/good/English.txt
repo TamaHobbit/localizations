@@ -1,0 +1,5 @@
+building_speedup=Finish this job immediately for {0} gold or $ {1}
+second=This second is cool
+order=I will {0} have order {1} in the {2}
+missing_middle={0} {1} {2}
+lots={11} {0} {1}

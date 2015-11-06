@@ -1,0 +1,5 @@
+building_speedup=Terminer ce travail immédiatement pour\n{0} pièces ou {1} $
+second=This second is cool
+order=I will {2} have order {1} in the {0}
+missing_middle={0} {2}
+lots={11} {0} {1}

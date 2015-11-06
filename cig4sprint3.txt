@@ -1,0 +1,6 @@
+notification_all_buildings_repaired=All of your damaged buildings have been repaired!
+repair_to_upgrade=This building is in bad shape! You must repair this building before you can upgrade it.
+repair_slow=Repair
+max_level_reached=Maximum level reached!
+new_levels_coming_soon=Sorry, but you've reached the maximum level we currently have. We will be adding more levels very soon. Thank you for your patience!
+boost_percent=Boost: {0}

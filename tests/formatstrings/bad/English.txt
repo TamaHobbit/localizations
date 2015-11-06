@@ -1,0 +1,3 @@
+building_speedup=Finish this job immediately for {0} gold or $ {1}
+toomany=This second is cool
+notenough=Should this be an {0}?
