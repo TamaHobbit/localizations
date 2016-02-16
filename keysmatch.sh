@@ -30,6 +30,9 @@ source util.sh
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo $1 | sed 's/\/$//'`;
 
+rm -rf .internals
+mkdir .internals
+
 keysMissing=0;
 mkdir .internals/keys -p
 mkdir .internals/keys/diff-english -p
