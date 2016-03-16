@@ -8,7 +8,7 @@ grep "key: " Assets/Scenes/*.unity | cut -d' ' -f4 > usedkeys.txt
 # find in prefabs
 find Assets/Prefabs/ -type f -name "*.prefab" | xargs -I {} grep "key: " "{}" | cut -d' ' -f4 >> usedkeys.txt
 # find in C# code; Localization.Get("key")
-find Assets/Scripts -name *.cs | xargs grep -oh "Localization.Get(\"[^\)]*\")" | cut -d'"' -f2 >> usedkeys.txt
+find Assets/ -name *.cs | xargs grep -oh "Localization.Get(\"[^\)]*\")" | cut -d'"' -f2 >> usedkeys.txt
 # find stringReferences in properties file
 grep ".stringReference" Assets/objects.properties.txt | cut -d'=' -f2 | tr -d ' ' | sort | uniq >> usedkeys.txt
 grep ".type =" Assets/objects.properties.txt | tr -d ' ' | grep -v "route" | grep -v "island" | cut -d'.' -f1 | sort | uniq >> usedkeys.txt
