@@ -126,5 +126,3 @@ else
 	echo "Fix the errors and try again.";
 	exit 1;
 fi
-
-# TODO check format keys
