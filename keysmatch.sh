@@ -21,6 +21,9 @@ if [ -z $2 ]; then
 	exit 1;
 fi
 
+# Remove windows line endings if present in usedkeys.txt, since comm -3 will otherwise complain every key is missing
+sed -e s/"^M"//g $2 -i
+
 summary=0;
 if [ ! -z $3 ]; then
 	if [ $3 == "-s" ]; then
