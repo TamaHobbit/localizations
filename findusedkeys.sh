@@ -11,7 +11,9 @@ find Assets/Prefabs/ -type f -name "*.prefab" | xargs -I {} grep "key: " "{}" | 
 find Assets/ -name *.cs | xargs grep -oh "Localization.Get(\"[^\)]*\")" | cut -d'"' -f2 >> usedkeys.txt
 # find stringReferences in properties file
 grep ".stringReference" Assets/objects.properties.txt | cut -d'=' -f2 | tr -d ' ' | sort | uniq >> usedkeys.txt
-grep ".type =" Assets/objects.properties.txt | tr -d ' ' | grep -v "route" | grep -v "island" | cut -d'.' -f1 | sort | uniq >> usedkeys.txt
+# find all building names; this works for CVIS, which doesn't have stringReferences, but other games such as CIG3 do not localize the actual building name, 
+# so this is commented by default -uncomment the following line if you are processing a game without stringReferences
+#grep ".type =" Assets/objects.properties.txt | tr -d ' ' | grep -v "route" | grep -v "island" | cut -d'.' -f1 | sort | uniq >> usedkeys.txt
 
 
 sort usedkeys.txt | uniq > tmp.txt
