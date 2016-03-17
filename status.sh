@@ -1,17 +1,23 @@
 # Prints the status, checking for untranslated keys in English.txt and conflicted keys in English.txt
 # $1, parameter 1: The destination folder containing the existing translations to check
-# $2, parameter 2: (Optional) The language to provide details about
+# $2, parameter 2: The usedkeys.txt file to check against. If you don't have one, use either findusedkeys.sh or extractused.sh to make one.
 # Flags:
 # -s	sort any files not already sorted
 # Example:
-# status.sh iap_keys/
-# status.sh iap_keys/ Danish
+# status.sh iap_keys/ usedkeys.txt
+# status.sh iap_keys/ usedkeys.txt
 # Or perhaps:
-# status.sh ../../cig2/Assets/Resources/
+# status.sh ../../cig2/Assets/Resources/ ../../cig2/usedkeys.txt
 
 # The empty line above is important, it distinguishes between the usage message (printed) and the code
 # If no parameters, print help atop this shell file
 if [ -z $1 ]; then
+	sed -e '/^$/,$d' $0;
+	exit 1;
+fi
+
+if [ -z $2 ]; then
+	echo "Parameter 2, usedkeys.txt, is mandatory!";
 	sed -e '/^$/,$d' $0;
 	exit 1;
 fi
@@ -33,27 +39,11 @@ if [ $? -eq 1 ]; then # unable to find English.txt in given folder
 	fi
 fi
 
-if [ -z $2 ]; then  #if $2 unset, use $ALL_LANGUAGES from langlist.sh
-	targetlang="all_languages"; #Not a space, because then it would be an array with two elements
-	LANGUAGES=(${ALL_LANGUAGES[@]});
-	languageSpecified=0;
-else
-	array_contains ALL_LANGUAGES[@] $2;
-	langvalid=$?;
-	if [ $langvalid -eq 0 ]; then
-		echo "No such language:" $2;
-		exit;
-	fi
-	targetlang=$2;
-	LANGUAGES=$2;
-	languageSpecified=1;
-fi
-
-printf -- "-------Checking formatting in %19s----------\n" $targetlang;
+echo "-------Checking formatting---------------";
 mkdir .internals -p # Make if not present; because internals/ is .gitignore'd, it will not be present when you checkout
 mkdir .internals/sortdiff -p
 UNSORTED_FILES=0;
-for language in "${LANGUAGES[@]}"; do
+for language in "${ALL_LANGUAGES[@]}"; do
 	test -e $inputFolder/$language.txt;
 	if [ $? -gt 0 ]; then
 		continue; # for sortedness, it is not an error to be missing some files, just ignore them
@@ -80,7 +70,7 @@ fi
 
 # Check if normalizespaces.sh needs to be run
 rm -f .internals/normalizecheckfile.txt
-for language in "${LANGUAGES[@]}"; do
+for language in "${ALL_LANGUAGES[@]}"; do
 	grep " =\|= " $inputFolder/$language.txt >> .internals/normalizecheckfile.txt;
 done
 abnormalLines=`wc -l .internals/normalizecheckfile.txt | cut -d' ' -f1`;
@@ -90,16 +80,16 @@ if [[ $abnormalLines -gt 0 ]]; then
 fi
 rm -f .internals/normalizecheckfile.txt
 
-printf -- "-------Checking keys present in %19s--------\n" $targetlang;
+echo "-------Checking keys present-------------";
 
-keysmatch.sh $inputFolder/ -s
+keysmatch.sh $inputFolder/ $2 -s
 keysMissing=$?;
 
 if [ $keysMissing -gt 0 ]; then
 	echo "Run \`keysmatch.sh $1\` for more information about which keys are missing in each file.";
 fi
 
-printf -- "-------Checking for conflicted keys in %19s-\n" $targetlang;
+echo "-------Checking for conflicted keys------";
 
 checkunique.sh $inputFolder/ -s
 conflictedKeys=$?;
@@ -108,7 +98,7 @@ if [ $conflictedKeys -gt 0 ]; then
 	echo "Run \`checkunique.sh $1\` for more information about which keys are duplicated in each file.";
 fi
 
-printf -- "-------Checking formatstrings in %19s-------\n" $targetlang;
+echo "-------Checking formatstrings------------";
 
 formatstrings.sh $inputFolder/ -s
 formatstringError=$?;

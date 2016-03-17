@@ -1,2 +1,3 @@
 # ALL_LANGUAGES=("Arabic" "Danish" "German" "English" "Spanish" "French" "Italian" "Japanese" "Korean" "Norwegian" "Dutch" "Portugese" "Russian" "Swedish" "Thai" "Turkish" "Chinese_Simplified" "Chinese_Traditional");
 ALL_LANGUAGES=("Arabic" "Danish" "German" "English" "Spanish" "French" "Italian" "Japanese" "Korean" "Norwegian" "Dutch" "Portugese" "Russian" "Swedish" "Thai" "Turkish" "Chinese_Simplified" "Chinese_Traditional" "Polish" "Filipino" "Farsi" "Indonesian" "Vietnamese" "Malay");
+NR_LANGUAGES=${#ALL_LANGUAGES[@]}
