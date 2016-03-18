@@ -47,29 +47,7 @@ for language in "${ALL_LANGUAGES[@]}"; do
 done
 
 #clean up
-rm .internals/keyregexes.txt
 normalizespaces.sh $destinationFolder
 sort.sh $destinationFolder
 
-mkdir -p .internals/export/
-
-keysMissing=0
-for language in "${ALL_LANGUAGES[@]}"; do
-	cat $destinationFolder/$language.txt | cut -d'=' -f1 > .internals/export/keys-$language.txt
-	diff $3 .internals/export/keys-$language.txt > .internals/export/keys-diff-$language.txt
-	diff_lines .internals/export/keys-diff-$language.txt;
-	SORTDIFF_LINES=$?;
-	if [ $SORTDIFF_LINES -gt 0 ]; then
-		keysMissing=1;
-		printf "%19s keys do not match: %3i differences\n" $language $SORTDIFF_LINES;
-		# cat .internals/export/keys-diff-$language.txt
-	fi
-done
-
-if [ $keysMissing -gt 0 ]; then
-	echo "--------------------------------";
-	echo "Some keys were missing in $1";
-	echo "Run keysmatch.sh $2 for details";
-	echo ".internals/export/keys-[languagename].txt contains the keys included in each language.";
-	echo ".internals/export/keys-diff-[languagename].txt contains the difference in keys between that language and English.";
-fi
+echo "Now run status.sh $destinationFolder $3 to check the results."
