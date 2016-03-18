@@ -5,7 +5,7 @@
 
 # find in scenes
 grep "key: " Assets/Scenes/*.unity | cut -d' ' -f4 > usedkeys.txt
-# find in prefabs
+# find in prefabs (note this gives false positives "Alpha" and "Scale" from some prefabs, such as CIG4's OverlayAlphaAnimation.prefab and OverlayDarkAlphaAnimation.prefab
 find Assets/Prefabs/ -type f -name "*.prefab" | xargs -I {} grep "key: " "{}" | cut -d' ' -f4 >> usedkeys.txt
 # find in C# code; Localization.Get("key")
 find Assets/ -name *.cs | xargs grep -oh "Localization.Get(\"[^\)]*\")" | cut -d'"' -f2 >> usedkeys.txt
@@ -22,6 +22,6 @@ mv tmp.txt usedkeys.txt
 #print the rest
 echo "The rest are non-standard usages of Localization.Get(), with a variable passed in, or other bullshit you will have to find out for yourself:"
 
-find Assets/Scripts -name *.cs | xargs grep "Localization.Get" | grep -v "Localization.Get(\"[^\)]*\")"
+find Assets/ -name *.cs | xargs grep "Localization.Get[^\(]\|Localization.Get([^\"]"
 
 echo "Afterwards, you will want to do something like; `sort usedkeys.txt | uniq > tmp.txt; mv tmp.txt usedkeys.txt` to get rid of any duplicates you may have introduced"
