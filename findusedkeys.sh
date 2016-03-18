@@ -22,6 +22,6 @@ mv tmp.txt usedkeys.txt
 #print the rest
 echo "The rest are non-standard usages of Localization.Get(), with a variable passed in, or other bullshit you will have to find out for yourself:"
 
-find Assets/ -name *.cs | xargs grep "Localization.Get[^\(]\|Localization.Get([^\"]\|Localization.Get(\".*\"[^\)]"
+find Assets/ -name *.cs | xargs grep "Localization.Get[^\(]\|Localization.Get([^\"]\|Localization.Get(\"[^\)]*\"[^\)]"
 
 echo "Afterwards, you will want to do something like; `sort usedkeys.txt | uniq > tmp.txt; mv tmp.txt usedkeys.txt` to get rid of any duplicates you may have introduced"
