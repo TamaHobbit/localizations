@@ -86,7 +86,7 @@ keysmatch.sh $inputFolder/ $2 -s
 keysMissing=$?;
 
 if [ $keysMissing -gt 0 ]; then
-	echo "Run \`keysmatch.sh $1\` for more information about which keys are missing in each file.";
+	echo "Run \`keysmatch.sh $1 $2\` for more information about which keys are missing in each file.";
 fi
 
 echo "-------Checking for conflicted keys------";
