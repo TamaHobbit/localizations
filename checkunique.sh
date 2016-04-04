@@ -27,7 +27,7 @@ mkdir .internals/dup -p;
 
 source langlist.sh
 for i in "${ALL_LANGUAGES[@]}"; do
-	TMPFILENAME=`echo "$inputFolder/$i.txt" | rev | cut -d"/" -f1 | rev`;
+	TMPFILENAME=`echo "$inputFolder/$i.txt" | (read name; echo ${name##*/})`;
 	checkfileduplicates.sh $inputFolder/$i.txt > .internals/dup/$TMPFILENAME;
 	duplicateLines=`wc -l .internals/dup/$TMPFILENAME | cut -d' ' -f1`;
 	if [[ $duplicateLines -gt 0 ]]; then

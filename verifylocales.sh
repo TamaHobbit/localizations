@@ -19,7 +19,7 @@ for locale in "${LOCALES[@]}"; do
 	find -type d | grep -v "./.git/" | grep "/$locale\(-...\?\)\?$" |
 	# find all occurences of locale foldername with optional suffix like -419 or -TW 
 	# (\? makes the last thing optional, which is used both for "2 or 3 dots" and, using a group \( group \), for the suffix as a whole
-	rev | cut -d'/' -f2- | rev | sort > .internals/locales/$locale.txt;
+	(read name; echo ${name%/*}) | sort > .internals/locales/$locale.txt;
 	# remove from the last / to the end of the line, to get the folder containing the localization file
 	cat .internals/locales/$locale.txt >> .internals/locales/everything.txt
 done
