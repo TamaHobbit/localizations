@@ -9,8 +9,8 @@ if [ -z $1 ]; then
 	exit 1;
 fi
 
-mkdir .internals -p
-mkdir .internals/locales -p
+mkdir -p .internals
+mkdir -p .internals/locales
 rm -f .internals/locales/everything.txt
 
 LOCALES=("ar" "da" "de" "en" "es" "fr" "it" "ja" "ko" "nb" "nl" "pt" "ru" "sv" "th" "tr" "zh-CN" "zh-TW" "pl" "fil" "fa" "id" "vi" "ms");

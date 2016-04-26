@@ -40,8 +40,8 @@ if [ $? -eq 1 ]; then # unable to find English.txt in given folder
 fi
 
 echo "-------Checking formatting---------------";
-mkdir .internals -p # Make if not present; because internals/ is .gitignore'd, it will not be present when you checkout
-mkdir .internals/sortdiff -p
+mkdir -p .internals # Make if not present; because internals/ is .gitignore'd, it will not be present when you checkout
+mkdir -p .internals/sortdiff
 UNSORTED_FILES=0;
 for language in "${ALL_LANGUAGES[@]}"; do
 	test -e $inputFolder/$language.txt;

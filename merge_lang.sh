@@ -16,8 +16,8 @@ fi
 inputFolder=`echo $1 | sed 's/\/$//'`;
 destinationFolder=`echo $3 | sed 's/\/$//'`;
 
-mkdir .internals -p
-mkdir .internals/merging -p
+mkdir -p .internals
+mkdir -p .internals/merging
 echo "Merging" $2 "translations for" $1 "into" $destinationFolder;
 rm -f .internals/merging/$2.txt #remove first, because we append to the file, rather than writing to it
 test -e $destinationFolder/$2.txt;

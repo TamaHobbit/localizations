@@ -13,8 +13,8 @@ fi
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo $1 | sed 's/\/$//'`;
 
-mkdir .internals -p;
-mkdir .internals/shorter -p;
+mkdir -p .internals;
+mkdir -p .internals/shorter;
 
 checkunique.sh all_translations/
 # Now we have .internals/dup/$language.txt with the duplicate keys

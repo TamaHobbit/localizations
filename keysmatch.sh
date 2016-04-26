@@ -44,8 +44,8 @@ rm -rf .internals
 mkdir .internals
 
 keysMissing=0;
-mkdir .internals/keys -p
-mkdir .internals/keys/untranslated -p
+mkdir -p .internals/keys
+mkdir -p .internals/keys/untranslated
 for language in "${ALL_LANGUAGES[@]}"; do
 	test -e $inputFolder/$language.txt;
 	if [ $? -eq 0 ]; then

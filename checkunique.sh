@@ -23,7 +23,7 @@ fi
 
 invalidFiles=0;
 
-mkdir .internals/dup -p;
+mkdir -p .internals/dup;
 
 source langlist.sh
 for i in "${ALL_LANGUAGES[@]}"; do

@@ -30,7 +30,7 @@ source util.sh
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo $1 | sed 's/\/$//'`;
 
-mkdir .internals/formatstrings -p
+mkdir -p .internals/formatstrings
 for language in "${ALL_LANGUAGES[@]}"; do
 	# First grep prints all lines with any formatstrings in them;
 	# second grep prints only the key, with the formatstring {0} symbols on lines following it
@@ -55,7 +55,7 @@ done
 
 # now .internals/formatstrings contains for each language a file defining the formatstrings by key; these files should be identical
 # Note there is a lot of code duplication with keysmatch.sh since that also creates files and asserts that they are identical
-mkdir .internals/formatstrings/diff-english -p
+mkdir -p .internals/formatstrings/diff-english
 errorCode=0
 for language in "${ALL_LANGUAGES[@]}"; do
 	if [ "$language" == "English" ]; then
