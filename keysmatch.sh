@@ -77,7 +77,7 @@ if [ $keysMissing -gt 0 ]; then
 	# collect keys that are untranslated in any languages, sorting by number of missing languages
 	sort .internals/keys/untranslated/all.txt | uniq -c | sort -n -r > .internals/untranslated_languagecount.txt;
 	# and get from that the keys untranslated in all languages
-	awk '{ if( $1 == $NR_LANGUAGES ){ print $2; } else { exit; } }' .internals/untranslated_languagecount.txt | sort > .internals/missing_in_all_languages.txt
+	awk "{ if( \$1 == $NR_LANGUAGES ){ print \$2; } else { exit; } }" .internals/untranslated_languagecount.txt | sort > .internals/missing_in_all_languages.txt
 	
 	if [ $summary -eq 0 ]; then
 		# explain the format used above
