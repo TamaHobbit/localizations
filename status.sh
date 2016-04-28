@@ -73,7 +73,7 @@ rm -f .internals/normalizecheckfile.txt
 for language in "${ALL_LANGUAGES[@]}"; do
 	grep " =\|= " $inputFolder/$language.txt >> .internals/normalizecheckfile.txt;
 done
-abnormalLines=`wc -l .internals/normalizecheckfile.txt | cut -d' ' -f1`;
+abnormalLines=`wc -l .internals/normalizecheckfile.txt | awk {'print $1'}`;
 # cut -d' ' -f1 is to get the number before the space, which is the number of lines in the file
 if [[ $abnormalLines -gt 0 ]]; then
 	echo "You need to run \`normalizespaces.sh $1\` to ensure that there are no spaces around the \"=\" character.";

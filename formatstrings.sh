@@ -62,7 +62,7 @@ for language in "${ALL_LANGUAGES[@]}"; do
 		continue;
 	fi
 	diff .internals/formatstrings/English.txt .internals/formatstrings/$language.txt | grep "=" | cut -d' ' -f2 | cut -d'=' -f1 > .internals/formatstrings/diff-english/$language.txt
-	SORTDIFF_LINES=`wc -l .internals/formatstrings/diff-english/$language.txt | cut -d' ' -f1`;
+	SORTDIFF_LINES=`wc -l .internals/formatstrings/diff-english/$language.txt | awk {'print $1'}`;
 	if [[ $SORTDIFF_LINES -gt 0 ]]; then
 		errorCode=1;
 		printf "%19s format: %3i errors\n" $language $SORTDIFF_LINES;

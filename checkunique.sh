@@ -29,7 +29,7 @@ source langlist.sh
 for i in "${ALL_LANGUAGES[@]}"; do
 	TMPFILENAME=`echo "$inputFolder/$i.txt" | (read name; echo ${name##*/})`;
 	checkfileduplicates.sh $inputFolder/$i.txt > .internals/dup/$TMPFILENAME;
-	duplicateLines=`wc -l .internals/dup/$TMPFILENAME | cut -d' ' -f1`;
+	duplicateLines=`wc -l .internals/dup/$TMPFILENAME | awk {'print $1'}`;
 	if [[ $duplicateLines -gt 0 ]]; then
 		printf "Found %i duplicate keys in %19s.txt\n" $duplicateLines $i;
 		invalidFiles=$(($invalidFiles + 1));

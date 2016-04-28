@@ -60,7 +60,7 @@ rm -f .internals/keys/untranslated/all.txt
 
 for language in "${ALL_LANGUAGES[@]}"; do
 	comm -3 $2 .internals/keys/$language.txt > .internals/keys/untranslated/$language.txt
-	SORTDIFF_LINES=`wc -l .internals/keys/untranslated/$language.txt | cut -d' ' -f1`
+	SORTDIFF_LINES=`wc -l .internals/keys/untranslated/$language.txt | awk {'print $1'}`
 
 	if [ $SORTDIFF_LINES -gt 0 ]; then
 		keysMissing=1;
