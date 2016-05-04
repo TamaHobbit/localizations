@@ -22,7 +22,7 @@ if [ -z $2 ]; then
 fi
 
 # Remove windows line endings if present in usedkeys.txt, since comm -3 will otherwise complain every key is missing
-sed -e s/"^M"//g $2 > tmp.txt; mv tmp.txt $2;
+sed -e 's/^M$//' $2 > tmp.txt; mv tmp.txt $2;
 
 summary=0;
 if [ ! -z $3 ]; then
