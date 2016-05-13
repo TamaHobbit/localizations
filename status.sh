@@ -1,6 +1,6 @@
 # Prints the status, checking for untranslated keys in English.txt and conflicted keys in English.txt
 # $1, parameter 1: The destination folder containing the existing translations to check
-# $2, parameter 2: The usedkeys.txt file to check against. If you don't have one, use either findusedkeys.sh or extractused.sh to make one.
+# $2, parameter 2: The usedkeys.txt file to check against. If you don't have one, use extractused.sh to make one.
 # Flags:
 # -s	sort any files not already sorted
 # Example:

@@ -15,10 +15,24 @@ These scripts are used when something went wrong, or for checking:
 	formatstrings.sh -- check whether format strings in keys match with English. (no output means everything is fine)
 	sort.sh -- sort all localization files. This should be committed seperately.
 	normalizespaces.sh -- remove all spaces surrounding "=" character. This should be committed seperately.
+	findusedkeys.sh -- Search through C# code, Unity prefabs and scenes for components that might need localization, to determine what is needed. Prints everything it could not automatically detect on the console for you to fix.
 
-All other script should not be needed, but just like any other script, running them without any arguments prints usage instructions:
+All other script should not be needed, but most print usage instructions when running them without any arguments:
 
 	merge_lang.sh
+	
+------------------------------------------------
+
+# Installation: Get git bash, add this to PATH
+
+For the terminal to run these scripts, either install GitBash or get something like GitExtensions or SourceTree, which have a terminal button so that you can easily open the terminal on a particular project. It is best to add the localization git repository path to your PATH environment variable (In windows; Advanced System Settings > Environment variables). That way, you can open git bash on any project and use the scripts:
+
+	status.sh Assets/Resources usedkeys.txt
+
+If you use these scripts from your project directory, the .internals folder containing the temporary files (e.g. which keys are missing in all languages) 
+ends up in your project directory. These files are very useful for diagnosing what's wrong with the localizations (the output from some commands directs 
+you to read certain files). It is recommended to not .gitignore this, because that way you can see them as a git diff. Never commit them to the repository 
+though, as their contents change depending on which commands were run last.
 
 ------------------------------------------------
 
@@ -29,19 +43,6 @@ All other script should not be needed, but just like any other script, running t
 	conflicted keys -- Two identical keys with different values in some language is a conflict. Note that, after addtranslations.sh it is possible that some languages were merged without conflict, while others are not. If both the key and value is the same for two rows, addtranslations drops one and does not report a conflicted key.
 	pending localization -- A localization, such as "download_now=Download now!", that is included in English.txt and usedkeys.txt for a game, but is not present in the onesky database. See "Requesting a new translation"
 	
-------------------------------------------------
-	
-# Path
-	
-It is best to add the localization git repository path to your $PATH environment variable. That way, you can open git bash on any project and use the scripts:
-
-	status.sh Assets/Resources
-
-If you use these scripts from your project directory, the .internals folder containing the temporary files (e.g. which keys are missing in all languages) 
-ends up in your project directory. These files are very useful for diagnosing what's wrong with the localizations (the output from some commands directs 
-you to read certain files). It is recommended to not .gitignore this, because that way you can see them as a git diff. Never commit them to the repository 
-though, as their contents change depending on which commands were run last.
-
 ------------------------------------------------
 
 # Scenario's
@@ -58,10 +59,10 @@ Now make a judgement call, or ask product owners; is "download_and_play=Download
 
 ### Step 1: Add existing localization
 
-If you've found a localization that is good enough, add it by opening a cygwin terminal in the repository of the game;
+If you've found a localization that is good enough, add it by opening a GitBash terminal in the repository of the game;
 
 ```
-addkey.sh usedkeys.txt
+addkey.sh usedkeys.txt[ENTER]
 existing_key_I_found_in_onesky_repo[ENTER]
 [Cntrl^D][ENTER]
 ```
