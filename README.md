@@ -183,7 +183,7 @@ that Johnny has already requested this localization, so I just modify my code to
 
 ## Scenario 6: Spelling / grammar error? Content update?
 
-At some point, either a player or SS or a developer finds an error in a translation. This should be edited directly in this repository, committed and pushed
+At some point, either a player or SS or a developer finds an error in a translation. This should be edited directly in the onesky repository, committed and pushed
 and then exported to games as needed.
 
 This is considerably easier than when the localization contents need to be changed. For instance, the text for the rating request popup is modified to 
