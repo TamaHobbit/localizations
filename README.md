@@ -29,6 +29,8 @@ For the terminal to run these scripts, either install GitBash or get something l
 
 	status.sh Assets/Resources usedkeys.txt
 
+Note that my scripts make extensive usage of such unix commands as comm, find, sed etc. If you have e.g. the Ruby devkit installed, comm will refer to the wrong command! If something goes wrong, check `which comm` (if comm failed) to see if it is using GitBash's version of the command in question.
+	
 If you use these scripts from your project directory, the .internals folder containing the temporary files (e.g. which keys are missing in all languages) 
 ends up in your project directory. These files are very useful for diagnosing what's wrong with the localizations (the output from some commands directs 
 you to read certain files). It is recommended to not .gitignore this, because that way you can see them as a git diff. Never commit them to the repository 
