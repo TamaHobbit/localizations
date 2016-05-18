@@ -7,13 +7,15 @@
 
 # The empty line above is important, it distinguishes between the usage message (printed) and the code
 # If no parameters, print help atop this shell file
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
 	sed -e '/^$/,$d' $0;
 	exit 1;
 fi
 
 # in all scripts, if a folder is passed with trailing /, remove it and continue
-inputFolder=`echo $1 | sed 's/\/$//'`;
+inputFolder=`echo "$1" | sed 's/\/$//'`;
+
+rename.sh $inputFolder
 
 mkdir -p .internals;
 rm -f .internals/tmpusedkeys.txt

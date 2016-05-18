@@ -125,29 +125,22 @@ SS is free to change the text, but usually will not unless you ask them to. A sc
 ## Scenario 3: Receiving localizations
 
 On the SUISS slack channel, SS will periodically post a zip file with new localizations. 
-Download and unzip the localizations, check them, then add them to the onesky repository;
+Download and unzip the localizations, then import.sh them into onesky. 
+First use nospaces.sh to remove any spaces that might be in foldernames; those break the localization scripts.
 
-### Step 1: Check unzipped localizations
-
-```
-extractused.sh new_translations/ > usedkeys.txt
-status.sh new_translations/ usedkeys.txt
-```
-
-If there's anything wrong, see "Receiving bad localizations".
-
-### Step 2: Add to Onesky localizations
+### Step 1: Import to onesky
 
 ```
-addtranslations.sh new_translations/ onesky/all_translations
-extractused.sh onesky/all_translations > onesky/usedkeys.txt
-status.sh onesky/all_translations onesky/usedkeys.txt
+import.sh /e/repos/onesky/ /c/Users/Tama/Downloads/2016-01-13.txt
+status.sh /e/repos/onesky/all_translations /e/repos/onesky/usedkeys.txt
 ```
 
-The status of OneSky is allowed to have missing keys - that isn't a problem until a game uses incompletely translations. 
-As long as the new translations came out clean, and there are no key-conflicts in onesky/all_translations, we can commit and push our addition.
+Check the git diff to see if the corrections are desired, use status.sh to see if there are any new missing keys introduced. (meaning the imported translations were bad, see Scenario 4)
 
-### Step 3: Export to required games
+The status of OneSky is allowed to have missing keys - that isn't a problem until a game uses incomplete translations. 
+As long as the status.sh after adding is better than it was before, we can commit and push our addition.
+
+### Step 2: Export to required games
 
 ```
 export.sh onesky/all_translations gamefolder/Assets/Resources gamefolder/usedkeys.txt
