@@ -16,17 +16,15 @@ fi
 
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 oneskyfolder=`echo $1 | sed 's/\/$//'`;
-sourceImportDirs="${*:2}"
-for i in ${#sourceImportDirs[@]}; do
-	sourceImportDirs[$i-1]=`echo ${sourceImportDirs[$i-1]} | sed 's/\/$//'`;
-done
+# Get parameters 2 and following into an array
+sourceImportDirs=`echo ${@:2} | sed 's_\/$__g' | sed 's_\/ _ _g' | tr " " "\n"`
 
 echo "Resetting $oneskyfolder/usedkeys.txt since it might be out of date from e.g. calling addtranslations.sh directly"
 extractused.sh $oneskyfolder/all_translations > $oneskyfolder/usedkeys.txt
 
 echo "Establishing keys to be overwritten; see .internals/import_overwritingkeys.txt"
 rm -f .internals/import_overwritingkeys.txt
-for inputFolder in "${sourceImportDirs[@]}"; do
+for inputFolder in $sourceImportDirs; do
 	rename.sh $inputFolder;
 	extractused.sh $inputFolder >> .internals/import_overwritingkeys.txt
 done
@@ -40,8 +38,7 @@ rm -rf $oneskyfolder/all_translations
 mv $oneskyfolder/new_all_translations $oneskyfolder/all_translations
 
 echo "Adding translations:"
-for i in ${#sourceImportDirs[@]}; do
-	inputFolder=${sourceImportDirs[$i-1]};
+for inputFolder in $sourceImportDirs; do
 	echo "===$inputFolder===";
 	addtranslations.sh $inputFolder $oneskyfolder/all_translations
 done
