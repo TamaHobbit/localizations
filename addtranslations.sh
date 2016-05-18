@@ -49,4 +49,4 @@ normalizespaces.sh $DESTINATION
 
 sort.sh $DESTINATION
 
-echo "You must now run \`extractused.sh $DESTINATION > $DESTINATION/usedkeys.txt` and \`status.sh" $DESTINATION $DESTINATION/usedkeys.txt"\` to check the resulting database";
+echo "You must now run extractused.sh $DESTINATION > $DESTINATION/usedkeys.txt and status.sh $DESTINATION $DESTINATION/usedkeys.txt to check the resulting database";
