@@ -40,7 +40,8 @@ rm -rf $oneskyfolder/all_translations
 mv $oneskyfolder/new_all_translations $oneskyfolder/all_translations
 
 echo "Adding translations:"
-for inputFolder in "${sourceImportDirs[@]}"; do
+for i in ${#sourceImportDirs[@]}; do
+	inputFolder=${sourceImportDirs[$i-1]};
 	echo "===$inputFolder===";
 	addtranslations.sh $inputFolder $oneskyfolder/all_translations
 done
