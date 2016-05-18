@@ -15,8 +15,6 @@ fi
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo "$1" | sed 's/\/$//'`;
 
-rename.sh $inputFolder
-
 mkdir -p .internals;
 rm -f .internals/tmpusedkeys.txt
 source langlist.sh
