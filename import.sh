@@ -31,7 +31,7 @@ for inputFolder in "${sourceImportDirs[@]}"; do
 	extractused.sh $inputFolder >> .internals/import_overwritingkeys.txt
 done
 
-echo "Removing new keys from them from $oneskyfolder/usedkeys.txt"
+echo "Removing newly imported keys from $oneskyfolder/usedkeys.txt"
 removeusedkeysin.sh $oneskyfolder/usedkeys.txt .internals/import_overwritingkeys.txt
 
 echo "Re-exporting $oneskyfolder/all_translations to itself, effectively discarding the existing localizations that are in the inputFolders"
