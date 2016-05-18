@@ -42,7 +42,7 @@ sed 's/^/\^/' $3 | sed 's/$/=/' > .internals/keyregexes.txt
 mkdir -p $destinationFolder
 # remove all files from it
 for language in "${ALL_LANGUAGES[@]}"; do
-	rm $destinationFolder/$language.txt
+	rm -f $destinationFolder/$language.txt
 	grep -f .internals/keyregexes.txt $inputFolder/$language.txt > $destinationFolder/$language.txt
 done
 
