@@ -139,7 +139,7 @@ If there's anything wrong, see "Receiving bad localizations".
 ### Step 2: Add to Onesky localizations
 
 ```
-add_translations.sh new_translations/ onesky/all_translations
+addtranslations.sh new_translations/ onesky/all_translations
 extractused.sh onesky/all_translations > onesky/usedkeys.txt
 status.sh onesky/all_translations onesky/usedkeys.txt
 ```
