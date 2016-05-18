@@ -10,4 +10,5 @@ fi
 
 ( cd $1
 	ls | (while read name; do name="$(echo $name | sed 's/\/$//')"; safename=`echo $name | sed 's/ /_/g'`; mv "$name" $safename; done)
+	find -type f | (while read name; do name="$(echo $name | sed 's/\/$//')"; safename=`echo $name | sed 's/ /_/g'`; mv "$name" $safename; done)
 )
