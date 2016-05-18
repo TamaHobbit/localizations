@@ -1,5 +1,5 @@
 # Remove keys from usedkeys.txt list in game. Type each new key on a new line, followed up by Cntrl^D to signify end-of-file.
-# You can also pipe in a text file with the keys to be removed.
+# Piping in a text file with the keys to be removed would be much slower than using removeusedkeysin.sh
 # $1, parameter 1: The current usedkeys.txt file, that should normally be in the root of your project
 
 # The empty line above is important, it distinguishes between the usage message (printed) and the code
