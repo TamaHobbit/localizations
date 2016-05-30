@@ -99,7 +99,7 @@ Keep in mind that:
 * There may not be any whitespace inside or preceding the key.
 * the new key must not conflict with the onesky database, check with: grep "^my_new_key_needed=" ../onesky/all_translations/English.txt
 
-![screenshot of running dirtyadd.sh](http://http://imgur.com/rLxD0cn.png)
+![screenshot of running dirtyadd.sh](http://imgur.com/rLxD0cn.png)
 
 Commit these changes along with your feature, so that others know that the feature depends on pending localizations.
 
