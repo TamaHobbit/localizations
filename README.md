@@ -85,9 +85,12 @@ If the status is clean, you are done. If the status was clean but is no longer c
 
 ### Step 1: Add a pending localization
 
+When we need a new localized text, we add it to English ourselves for testing, and add the key to usedkeys. As long as the new translations have not come in, these are called "dirty translations", because they would be overwritten by doing export.sh. To add the value to English and the key to usedkeys.txt, you can use dirtyadd.sh.
+
 ```
-addkey.sh usedkeys.txt
-my_new_key_needed[ENTER]
+dirtyadd.sh usedkeys.txt Assets/Resources/English.txt
+energy_cost=Energy Cost[ENTER]
+damage_noun=Damage[ENTER]
 [Cntrl^D][ENTER]
 ```
 
@@ -96,14 +99,16 @@ Keep in mind that:
 * There may not be any whitespace inside or preceding the key.
 * the new key must not conflict with the onesky database, check with: grep "^my_new_key_needed=" ../onesky/all_translations/English.txt
 
+![screenshot of running dirtyadd.sh](http://http://imgur.com/rLxD0cn.png)
+
+Commit these changes along with your feature, so that others know that the feature depends on pending localizations.
+
 Request the key and translation from SS in the SUISS localization channel, by posting the following, for example:
 
 ```
 I need this for TCG!
 download_now=Download now!
 ```
-
-Append your translation to English.txt (don't worry about sorting). Commit these changes along with your feature, so that others know that the feature depends on pending localizations.
 
 ### Step 2: Update your code
 
