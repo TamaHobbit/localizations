@@ -97,7 +97,7 @@ damage_noun=Damage[ENTER]
 Keep in mind that:
 * The '=' character is forbidden in both keys and values, and is only used to seperate the two.
 * There may not be any whitespace inside or preceding the key.
-* the new key must not conflict with the onesky database, check with: grep "^my_new_key_needed=" ../onesky/all_translations/English.txt
+* the new key must not conflict with the onesky database, check with: grep "\^my_new_key_needed=" ../onesky/all_translations/English.txt
 
 ![screenshot of running dirtyadd.sh](http://imgur.com/rLxD0cn.png)
 
