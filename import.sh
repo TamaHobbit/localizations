@@ -2,7 +2,7 @@
 # This overwriting is the difference between it and addtranslations, which would end up with conflicted keys instead.
 # When done, usedkeys.txt will have new translations, and localization files will also contain corrections; check the git diff before committing & pushing
 # $1, parameter 1: Destination folder - this should be onesky/; it uses the usedkeys.txt in there, and the all_translations/ directory
-# $2-, parameters 2 and following: Folders containing new localizations to import.
+# $2-, parameters 2 and following: Folders containing new localizations to import. Note that directories cannot contain spaces.
 # Examples: 
 # import.sh /e/repos/onesky /c/Users/Tama/Downloads/2016-01-13.txt/
 # import.sh /e/repos/onesky *
