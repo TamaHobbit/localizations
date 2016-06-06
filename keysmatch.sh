@@ -5,8 +5,8 @@
 # Flags:
 # -s summary; only print the number of differing keys for each language compared to English.txt
 # Examples:
-# keysmatch.sh iap_keys/
-# keysmatch.sh ../../cig2/Assets/Resources/
+# keysmatch.sh iap_keys/ usedkeys.txt
+# keysmatch.sh ../../cig2/Assets/Resources/ ./../cig2/usedkeys.txt
 
 # The empty line above is important, it distinguishes between the usage message (printed) and the code
 # If no parameters, print help atop this shell file
