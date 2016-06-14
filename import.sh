@@ -25,6 +25,18 @@ extractused.sh $oneskyfolder/all_translations > $oneskyfolder/usedkeys.txt
 echo "Establishing keys to be overwritten; see .internals/import_overwritingkeys.txt"
 rm -f .internals/import_overwritingkeys.txt
 for inputFolder in $sourceImportDirs; do
+	# If the given folder has not yet been rename.sh'ed, rename.sh it and continue
+	test -e $inputFolder/English.txt
+	if [ $? -eq 1 ]; then # unable to find English.txt in given folder
+		ENGLISH_DIR=($inputFolder/"en/");
+		test -e $ENGLISH_DIR;
+		if [ $? -eq 0 ]; then
+			rename.sh $inputFolder/
+		else
+			echo "Expected to find $inputFolder/en to rename.sh and then import. Please check the parameters."
+			exit 1;
+		fi
+	fi
 	rename.sh $inputFolder;
 	extractused.sh $inputFolder >> .internals/import_overwritingkeys.txt
 done

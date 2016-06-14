@@ -14,6 +14,17 @@ fi
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo $1 | sed 's/\/$//'`;
 
+# If the given folder has not yet been rename.sh'ed, rename.sh it and continue
+test -e $inputFolder/English.txt
+if [ $? -eq 1 ]; then # unable to find English.txt in given folder
+	ENGLISH_DIR=($inputFolder/"en/");
+	test -e $ENGLISH_DIR;
+	if [ $? -eq 0 ]; then
+		echo "";
+		rename.sh $inputFolder/
+	fi
+fi
+
 source langlist.sh
 for i in "${ALL_LANGUAGES[@]}"; do
 	sed "s/^$2=/$3=/g" $inputFolder/$i.txt > tmp.txt
