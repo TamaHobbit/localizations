@@ -37,7 +37,6 @@ for inputFolder in $sourceImportDirs; do
 			exit 1;
 		fi
 	fi
-	rename.sh $inputFolder;
 	extractused.sh $inputFolder >> .internals/import_overwritingkeys.txt
 done
 
