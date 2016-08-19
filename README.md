@@ -136,7 +136,7 @@ First use nospaces.sh to remove any spaces that might be in foldernames; those b
 ### Step 1: Import to onesky
 
 ```
-import.sh /e/repos/onesky/ /c/Users/Tama/Downloads/2016-01-13.txt
+import.sh /e/repos/onesky/ /c/Users/Tama/Downloads/2016-01-13
 status.sh /e/repos/onesky/all_translations /e/repos/onesky/usedkeys.txt
 ```
 
