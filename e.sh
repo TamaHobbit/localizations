@@ -1,0 +1,1 @@
+export.sh ../onesky/all_translations/ Assets/Resources/ usedkeys.txt
