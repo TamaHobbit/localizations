@@ -10,24 +10,6 @@ if [ -z $1 ]; then
 	exit 1;
 fi
 
-LOCALIZATIONS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-WORKING_DIR=`pwd`;
-cd $LOCALIZATIONS_DIR;
-mkdir -p $WORKING_DIR/.internals;
-git fetch;
-git status | sed -n 's/HEAD detached/Warning: Localizations repository is on a detached head (you should check out master)/p' > $WORKING_DIR/.internals/gitstatusdiff.txt;
-git status | grep "Changes not staged for commit" >> $WORKING_DIR/.internals/gitstatusdiff.txt;
-git log HEAD..origin/master >> $WORKING_DIR/.internals/gitstatusdiff.txt;
-GITSTATUS_LINES=`wc -l $WORKING_DIR/.internals/gitstatusdiff.txt | tr -s ' ' | cut -d' ' -f1`;
-if [[ $GITSTATUS_LINES -gt 0 ]]; then
-	echo "Your git status in the localizations repository, located at $LOCALIZATIONS_DIR is behind / dirty / detached."
-	echo "It should be on branch master and up-to-date with origin/master.";
-	echo "See .internals/gitstatusdiff.txt for exactly what the problems are.";
-else
-	rm -f $WORKING_DIR/.internals/gitstatusdiff.txt;
-fi
-cd $WORKING_DIR;
-
 # in all scripts, if a folder is passed with trailing /, remove it and continue
 inputFolder=`echo $1 | sed 's/\/$//'`;
 destinationFolder=`echo $2 | sed 's/\/$//'`;
