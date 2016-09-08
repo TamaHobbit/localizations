@@ -61,7 +61,10 @@ for language in "${ALL_LANGUAGES[@]}"; do
 	if [ "$language" == "English" ]; then
 		continue;
 	fi
-	diff .internals/formatstrings/English.txt .internals/formatstrings/$language.txt | grep "=" | cut -d' ' -f2 | cut -d'=' -f1 > .internals/formatstrings/diff-english/$language.txt
+	# make a regex file to get only the keys the language has
+	sort $inputFolder/$language.txt | cut -d'=' -f1 | sort > .internals/keys/$language.txt | sed 's/^/\^/' $3 | sed 's/$/=/' > .internals/keyregexes.txt
+	diff .internals/formatstrings/English.txt .internals/formatstrings/$language.txt | grep "=" | cut -d' ' -f2 | cut -d'=' -f1 |
+		grep -f .internals/keyregexes.txt > .internals/formatstrings/diff-english/$language.txt
 	SORTDIFF_LINES=`wc -l .internals/formatstrings/diff-english/$language.txt | awk {'print $1'}`;
 	if [[ $SORTDIFF_LINES -gt 0 ]]; then
 		errorCode=1;
