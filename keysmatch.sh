@@ -49,7 +49,7 @@ mkdir -p .internals/keys/untranslated
 for language in "${ALL_LANGUAGES[@]}"; do
 	test -e $inputFolder/$language.txt;
 	if [ $? -eq 0 ]; then
-		sort $inputFolder/$language.txt | cut -d'=' -f1 | sed -e 's/[ \t]*$//' | sort > .internals/keys/$language.txt # cut grabs field before =; sed removes trailing whitespace
+		sort $inputFolder/$language.txt | cut -d'=' -f1 | sort > .internals/keys/$language.txt # cut grabs field before =;
 	else
 		echo $language "is missing. Maybe you have yet to rename.sh these translation files?";
 	fi
